@@ -1,0 +1,7 @@
+package org.passadminh.app
+
+interface Platform {
+    val name: String
+}
+
+expect fun getPlatform(): Platform

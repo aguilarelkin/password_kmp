@@ -1,0 +1,62 @@
+# Archivos y carpetas del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs y entornos de desarrollo
+.idea/
+*.iml
+.fleet/
+
+# Kotlin
+.kotlin/
+
+# Gradle
+.gradle/
+**/build/
+!src/**/build/
+
+# Archivos específicos de Android
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Archivos generados por Xcode
+*.xcworkspace/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+xcuserdata/
+
+# Archivos generados por CocoaPods (si usas pods para iOS)
+Pods/
+Podfile.lock
+*.xcconfig
+DerivedData/
+
+# Archivos temporales y de sistema operativo
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Archivos de configuración de JetBrains Run Configs
+.idea/runConfigurations/
+
+# Archivos de empaquetado
+*.apk
+*.ap_
+*.aab
+*.ipa
+
+# Archivos generados por KMP para la interoperabilidad
+*.klib
+*.konan
+*.kexe
+*.dSYM
+
+# Archivos de IntelliJ de metadatos
+out/
