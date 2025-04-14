@@ -44,9 +44,34 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+
+            // Navigation
+            implementation(libs.navigation.compose)
+
+            // Firebase multiplataforma
+            implementation(libs.firebase.auth)
+            implementation(libs.firebase.firestore)
+            /*
+
+            // Firebase multiplataforma
+            implementation("dev.gitlive:firebase-auth:1.9.0")
+            implementation("dev.gitlive:firebase-firestore:1.9.0")
+
+            // Koin
+            implementation("io.insert-koin:koin-core:3.5.0")
+            implementation("io.insert-koin:koin-compose:3.5.0")
+
+            // Kotlinx
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
+            // Multiplatform settings (opcional)
+            implementation("com.russhwolf:multiplatform-settings:1.1.1")*/
+
+
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
         }
+        iosMain.dependencies {  }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
