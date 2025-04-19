@@ -60,3 +60,6 @@ DerivedData/
 
 # Archivos de IntelliJ de metadatos
 out/
+
+# Firebase
+**/google-services.json
