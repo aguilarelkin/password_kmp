@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import org.passadminh.app.ui.screens.infopassword.PasswordViewModel
 
 @Composable
-fun HomeScreen(viewModel: PasswordViewModel, onLogout: () -> Unit) {
+fun HomeScreen(viewModel: PasswordViewModel? = null, onLogout: () -> Unit) {
 /*    val state by viewModel.state.collectAsState()
 
     Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
