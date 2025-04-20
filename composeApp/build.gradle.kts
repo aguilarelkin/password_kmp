@@ -51,6 +51,10 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.material3)
+
+            //icons
+            implementation(libs.material)
+
             // Navigation
             implementation(libs.navigation.compose)
 
