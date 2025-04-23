@@ -24,7 +24,7 @@ fun NavigationScreen(navController: NavHostController) {
                         }
                         launchSingleTop = true
                     }
-                })
+                }, navController)
         }
 
         composable("home") {

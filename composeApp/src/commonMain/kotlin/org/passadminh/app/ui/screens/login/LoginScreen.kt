@@ -121,7 +121,7 @@ fun LoginScreen(navController: NavHostController) {
                 trailingIcon = {
                     Icon(imageVector = if (visible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
                         contentDescription = "Toggle",
-                        modifier = Modifier.clickable { visible = !visible })
+                        modifier = Modifier.size(24.dp).clickable { visible = !visible })
                 },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,

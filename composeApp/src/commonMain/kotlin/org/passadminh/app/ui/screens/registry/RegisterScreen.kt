@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -34,13 +37,18 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Regular
 import compose.icons.fontawesomeicons.regular.Eye
 import compose.icons.fontawesomeicons.regular.EyeSlash
 
 @Composable
-fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLink: () -> Unit) {
+fun RegisterScreen(
+    onRegister: (email: String, pass: String) -> Unit,
+    onLoginLink: () -> Unit,
+    navController: NavHostController
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             drawRect(
@@ -67,7 +75,16 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
             }
             drawPath(wave, Color.White)
         }
-
+        IconButton(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier.padding(16.dp).align(Alignment.TopStart)
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Atrás",
+                tint = Color.White
+            )
+        }
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
@@ -83,9 +100,7 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
                 singleLine = true,
                 trailingIcon = {
                     if (email.isNotBlank()) Icon(
-                        Icons.Default.CheckCircle,
-                        contentDescription = "Valid",
-                        tint = Color.Green
+                        Icons.Default.CheckCircle, contentDescription = "Valid", tint = Color.Green
                     )
                 },
                 colors = TextFieldDefaults.colors(
@@ -110,7 +125,7 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
                 trailingIcon = {
                     Icon(imageVector = if (passVisible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
                         contentDescription = "Toggle",
-                        modifier = Modifier.clickable { passVisible = !passVisible })
+                        modifier = Modifier.size(24.dp).clickable { passVisible = !passVisible })
                 },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -134,7 +149,8 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
                 trailingIcon = {
                     Icon(imageVector = if (confirmVisible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
                         contentDescription = "Toggle",
-                        modifier = Modifier.clickable { confirmVisible = !confirmVisible })
+                        modifier = Modifier.size(24.dp)
+                            .clickable { confirmVisible = !confirmVisible })
                 },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -162,10 +178,10 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
             ) {
                 Box(
                     modifier = Modifier.background(
-                            Brush.horizontalGradient(
-                                colors = listOf(Color(0xFF7C4DFF), Color(0xFF651FFF))
-                            ), shape = RoundedCornerShape(50)
-                        ).fillMaxSize(), contentAlignment = Alignment.Center
+                        Brush.horizontalGradient(
+                            colors = listOf(Color(0xFF7C4DFF), Color(0xFF651FFF))
+                        ), shape = RoundedCornerShape(50)
+                    ).fillMaxSize(), contentAlignment = Alignment.Center
                 ) {
                     Text("Register", color = Color.White, fontSize = 18.sp)
                 }
