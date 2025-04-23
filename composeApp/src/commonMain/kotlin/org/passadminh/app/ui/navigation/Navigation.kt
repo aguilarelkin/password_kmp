@@ -12,7 +12,7 @@ import org.passadminh.app.ui.screens.registry.RegisterScreen
 fun NavigationScreen(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") {
-            LoginScreen()
+            LoginScreen(navController)
         }
 
         composable("register") {

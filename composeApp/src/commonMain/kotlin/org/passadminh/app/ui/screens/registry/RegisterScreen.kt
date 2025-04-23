@@ -3,12 +3,27 @@ package org.passadminh.app.ui.screens.registry
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -30,7 +45,7 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
         Canvas(modifier = Modifier.fillMaxSize()) {
             drawRect(
                 brush = Brush.verticalGradient(
-                    colors = listOf(Color(0xFF7C4DFF), Color(0xFF651FFF)),
+                    colors = listOf(Color(0xFF2196F3), Color(0xFF00BCD4)),
                     startY = 0f,
                     endY = size.height * 0.5f
                 )
@@ -39,9 +54,12 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
                 val amp = size.height * 0.05f
                 moveTo(0f, size.height * 0.6f)
                 cubicTo(
-                    size.width * 0.25f, size.height * 0.55f - amp,
-                    size.width * 0.75f, size.height * 0.65f + amp,
-                    size.width, size.height * 0.6f
+                    size.width * 0.25f,
+                    size.height * 0.55f - amp,
+                    size.width * 0.75f,
+                    size.height * 0.65f + amp,
+                    size.width,
+                    size.height * 0.6f
                 )
                 lineTo(size.width, size.height)
                 lineTo(0f, size.height)
@@ -52,91 +70,80 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                .align(Alignment.TopCenter)
-                .padding(top = 80.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
+                .align(Alignment.TopCenter).padding(top = 80.dp)
         ) {
             Text("Register", fontSize = 32.sp, color = Color.White)
-
             Spacer(Modifier.height(32.dp))
 
             var email by remember { mutableStateOf("") }
-            TextField(
-                value = email,
+            TextField(value = email,
                 onValueChange = { email = it },
                 placeholder = { Text("yourmail00@gmail.com") },
                 singleLine = true,
                 trailingIcon = {
-                    if (email.isNotBlank())
-                        Icon(Icons.Default.CheckCircle, contentDescription = "Valid", tint = Color.Green)
+                    if (email.isNotBlank()) Icon(
+                        Icons.Default.CheckCircle,
+                        contentDescription = "Valid",
+                        tint = Color.Green
+                    )
                 },
-                colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(50),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(FiftySixDp)
+                modifier = Modifier.fillMaxWidth().height(FiftySixDp)
             )
 
             Spacer(Modifier.height(16.dp))
 
             var password by remember { mutableStateOf("") }
             var passVisible by remember { mutableStateOf(false) }
-            TextField(
-                value = password,
+            TextField(value = password,
                 onValueChange = { password = it },
                 placeholder = { Text("Password") },
                 singleLine = true,
                 visualTransformation = if (passVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-                    Icon(
-                        imageVector = if (passVisible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
+                    Icon(imageVector = if (passVisible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
                         contentDescription = "Toggle",
-                        modifier = Modifier.clickable { passVisible = !passVisible }
-                    )
+                        modifier = Modifier.clickable { passVisible = !passVisible })
                 },
-                colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(50),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(FiftySixDp)
+                modifier = Modifier.fillMaxWidth().height(FiftySixDp)
             )
 
             Spacer(Modifier.height(16.dp))
 
             var confirm by remember { mutableStateOf("") }
             var confirmVisible by remember { mutableStateOf(false) }
-            TextField(
-                value = confirm,
+            TextField(value = confirm,
                 onValueChange = { confirm = it },
                 placeholder = { Text("Confirm Password") },
                 singleLine = true,
                 visualTransformation = if (confirmVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-                    Icon(
-                        imageVector = if (confirmVisible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
+                    Icon(imageVector = if (confirmVisible) FontAwesomeIcons.Regular.Eye else FontAwesomeIcons.Regular.EyeSlash,
                         contentDescription = "Toggle",
-                        modifier = Modifier.clickable { confirmVisible = !confirmVisible }
-                    )
+                        modifier = Modifier.clickable { confirmVisible = !confirmVisible })
                 },
-                colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 shape = RoundedCornerShape(50),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(FiftySixDp)
+                modifier = Modifier.fillMaxWidth().height(FiftySixDp)
             )
 
             Spacer(Modifier.height(24.dp))
@@ -151,20 +158,14 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
                 },
                 contentPadding = PaddingValues(),
                 shape = RoundedCornerShape(50),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(FiftySixDp)
+                modifier = Modifier.fillMaxWidth().height(FiftySixDp)
             ) {
                 Box(
-                    modifier = Modifier
-                        .background(
+                    modifier = Modifier.background(
                             Brush.horizontalGradient(
                                 colors = listOf(Color(0xFF7C4DFF), Color(0xFF651FFF))
-                            ),
-                            shape = RoundedCornerShape(50)
-                        )
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                            ), shape = RoundedCornerShape(50)
+                        ).fillMaxSize(), contentAlignment = Alignment.Center
                 ) {
                     Text("Register", color = Color.White, fontSize = 18.sp)
                 }
@@ -172,12 +173,10 @@ fun RegisterScreen(onRegister: (email: String, pass: String) -> Unit, onLoginLin
 
             Spacer(Modifier.height(16.dp))
 
-            Text(
-                "Already have an account? Login",
+            Text("Already have an account? Login",
                 color = Color.White.copy(alpha = 0.8f),
                 fontSize = 14.sp,
-                modifier = Modifier.clickable { onLoginLink() }
-            )
+                modifier = Modifier.clickable { onLoginLink() })
         }
     }
 }

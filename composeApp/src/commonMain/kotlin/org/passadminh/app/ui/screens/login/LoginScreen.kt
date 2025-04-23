@@ -41,22 +41,23 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import compose.icons.FontAwesomeIcons
 import compose.icons.fontawesomeicons.Brands
 import compose.icons.fontawesomeicons.Regular
-import compose.icons.fontawesomeicons.brands.Facebook
 import compose.icons.fontawesomeicons.brands.Google
-import compose.icons.fontawesomeicons.brands.Twitter
 import compose.icons.fontawesomeicons.regular.Eye
 import compose.icons.fontawesomeicons.regular.EyeSlash
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@Preview
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavHostController) {
     Box(modifier = Modifier.fillMaxSize()) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             drawRect(
                 brush = Brush.verticalGradient(
-                    colors = listOf(Color(0xFF7C4DFF), Color(0xFF651FFF)),
+                    colors = listOf(Color(0xFF2196F3), Color(0xFF00BCD4)),
                     startY = 0f,
                     endY = size.height * 0.5f
                 )
@@ -151,8 +152,9 @@ fun LoginScreen() {
             }
 
             Spacer(Modifier.height(8.dp))
+
             Text("Forgot your password?",
-                color = Color.White.copy(alpha = 0.8f),
+                color = Color.Gray.copy(alpha = 0.8f),
                 fontSize = 14.sp,
                 modifier = Modifier.clickable { /* TODO: forgot pass */ })
         }
@@ -161,16 +163,17 @@ fun LoginScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth().align(Alignment.BottomCenter).padding(bottom = 32.dp)
         ) {
-            Text("Need an account?", fontSize = 14.sp, color = Color.Gray)
-            Spacer(Modifier.height(12.dp))
+
+            //
+            // Text("Need an account?", fontSize = 14.sp, color = Color.Gray)
+
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                SocialIcon(imageVector = FontAwesomeIcons.Brands.Google, contentDesc = "Google")
-                SocialIcon(imageVector = FontAwesomeIcons.Brands.Facebook, contentDesc = "Facebook")
-                SocialIcon(imageVector = FontAwesomeIcons.Brands.Twitter, contentDesc = "Twitter")
+                SocialIcon(imageVector = FontAwesomeIcons.Brands.Google, contentDesc = "Google")/*  SocialIcon(imageVector = FontAwesomeIcons.Brands.Facebook, contentDesc = "Facebook")
+                SocialIcon(imageVector = FontAwesomeIcons.Brands.Twitter, contentDesc = "Twitter")*/
             }
             Spacer(Modifier.height(24.dp))
             Button(
-                onClick = { /* TODO: sign up */ },
+                onClick = { navController.navigate("register") },
                 colors = ButtonDefaults.buttonColors(Color(0xFF7C4DFF)),
                 shape = RoundedCornerShape(50),
                 modifier = Modifier.height(FiftySixDp).width(200.dp)
@@ -186,6 +189,7 @@ fun LoginScreen() {
 fun SocialIcon(imageVector: ImageVector, contentDesc: String) {
     IconButton(onClick = { /* TODO: social login */ }) {
         Icon(
+            tint = Color(0xFF4285F4),
             imageVector = imageVector,
             contentDescription = contentDesc,
             modifier = Modifier.size(36.dp)
