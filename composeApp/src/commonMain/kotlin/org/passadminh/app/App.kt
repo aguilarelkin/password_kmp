@@ -6,6 +6,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.passadminh.app.ui.navigation.NavigationScreen
 import org.passadminh.app.ui.theme.AppTheme
 
+
 @Composable
 @Preview
 fun App() {

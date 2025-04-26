@@ -1,4 +1,7 @@
 package org.passadminh.app.di
 
-object AppModule {
+import org.koin.dsl.module
+
+val appModule = module {
+    single { "Hola desde Koin" }
 }

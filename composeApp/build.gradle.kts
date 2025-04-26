@@ -41,6 +41,8 @@ kotlin {
             implementation(libs.firebase.analytics)
             implementation(libs.firebase.auth.android)
             //implementation(libs.firebase.crashlytics)
+            // Koin
+            implementation(libs.koin.android)
 
         }
         commonMain.dependencies {
@@ -61,15 +63,16 @@ kotlin {
             // Firebase multiplataforma
             implementation(libs.firebase.auth)
             implementation(libs.firebase.firestore)
-            /*
-
-            // Firebase multiplataforma
-            implementation("dev.gitlive:firebase-auth:1.9.0")
-            implementation("dev.gitlive:firebase-firestore:1.9.0")
 
             // Koin
-            implementation("io.insert-koin:koin-core:3.5.0")
-            implementation("io.insert-koin:koin-compose:3.5.0")
+
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+
+            /*
+
+
 
             // Kotlinx
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
