@@ -40,6 +40,7 @@ kotlin {
             implementation(project.dependencies.platform(libs.firebase.bom))
             implementation(libs.firebase.analytics)
             implementation(libs.firebase.auth.android)
+            implementation(libs.play.services.auth)
             //implementation(libs.firebase.crashlytics)
             // Koin
             implementation(libs.koin.android)
