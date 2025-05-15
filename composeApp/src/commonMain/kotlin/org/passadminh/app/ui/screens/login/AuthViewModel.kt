@@ -14,4 +14,10 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
             isLoggedIn.value = repository.signInWithEmail(email, password)
         }
     }
+
+    fun loginWithGoogle(idToken: String) {
+        viewModelScope.launch {
+            isLoggedIn.value = repository.signInWithGoogleCredential(idToken)
+        }
+    }
 }

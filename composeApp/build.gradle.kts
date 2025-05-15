@@ -12,28 +12,25 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class) compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
+        iosX64(), iosArm64(), iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
     }
-    
+
     jvm("desktop")
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -65,18 +62,19 @@ kotlin {
             implementation(libs.firebase.auth)
             implementation(libs.firebase.firestore)
 
+            //google - apple
+            implementation(libs.mirzemehdi.kmpauth.core)
+            implementation(libs.kmpauth.google)
+            implementation(libs.kmpauth.firebase)
+            implementation(libs.kmpauth.uihelper)
+
             // Koin
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-
-            /*
-
-
-
             // Kotlinx
-            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+            implementation(libs.kotlinx.coroutines.core)/*
 
             // Multiplatform settings (opcional)
             implementation("com.russhwolf:multiplatform-settings:1.1.1")*/
@@ -86,7 +84,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
         }
 
-        iosMain.dependencies {  }
+        iosMain.dependencies { }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
@@ -123,6 +121,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.material3.android)
+    //implementation(project(":composeApp"))
     debugImplementation(compose.uiTooling)
 }
 

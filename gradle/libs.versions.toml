@@ -15,9 +15,11 @@ compose-multiplatform = "1.7.3"
 
 firebaseAuth = "2.1.0"
 junit = "4.13.2"
+kmpauthCoreVersion = "2.3.1"
 koinAndroid = "4.0.0"
 kotlin = "2.1.10"
 kotlinx-coroutines = "1.10.1"
+kotlinxCoroutinesCore = "1.10.1"
 material = "1.1.0"
 navigationCompose = "2.8.0-alpha10"
 material3Android = "1.3.2"
@@ -31,6 +33,7 @@ koin = "4.0.0"
 playServicesAuth = "21.3.0"
 
 [libraries]
+
 
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -60,6 +63,16 @@ firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 #auth-firestore kmp
 firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebaseAuth" }
 firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebaseAuth" }
+
+#google -apple
+kmpauth-firebase = { module = "io.github.mirzemehdi:kmpauth-firebase", version.ref = "kmpauthCoreVersion" }
+kmpauth-google = { module = "io.github.mirzemehdi:kmpauth-google", version.ref = "kmpauthCoreVersion" }
+kmpauth-uihelper = { module = "io.github.mirzemehdi:kmpauth-uihelper", version.ref = "kmpauthCoreVersion" }
+mirzemehdi-kmpauth-core = { module = "io.github.mirzemehdi:kmpauth-core", version.ref = "kmpauthCoreVersion" }
+
+#kptlinx
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+
 
 #DI - VM
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
